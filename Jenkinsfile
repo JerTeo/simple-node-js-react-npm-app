@@ -3,13 +3,13 @@ pipeline {
         docker {
             image 'node:lts-bullseye-slim' 
             args '-p 3000:3000' 
+			ENV NODE_OPTIONS=--openssl-legacy-provider
         }
     }
     stages {
         stage('Build') { 
             steps {
                 sh 'npm install' 
-				export NODE_OPTIONS=--openssl-legacy-provider
             }
         }
 		stage('Test') {
